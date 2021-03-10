@@ -4,15 +4,13 @@ import 'package:flutter_app/app/sign_in/sign_in_button.dart';
 import 'package:flutter_app/services/auth.dart';
 
 class SignInPage extends StatelessWidget {
-  final void Function(User) onSignIn;
   final AuthBase auth;
 
-  SignInPage({Key key , @required this.auth, @required this.onSignIn}): super(key: key);
+  SignInPage({Key key , @required this.auth}): super(key: key);
 
   void _signInAnonymously() async {
     try {
       final user = await auth.signInAnonymously();
-      onSignIn(user);
     } catch (e) {
       print(e.toString());
     }

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f24fd2a0-f757-4119-a6f1-df0de56f1004" name="Default Changelist" comment="" />
+    <list default="true" id="f24fd2a0-f757-4119-a6f1-df0de56f1004" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/landing_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/landing_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app/sign_in/sign_in_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/sign_in/sign_in_page.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
