@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">540036256513-8ca8u8j37aojccpth86lcg2nfjr5ikdg.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">540036256513</string>
+    <string name="google_api_key" translatable="false">AIzaSyBLPkhbZBdunJLWv2Hlu6ce9oRmILieZH4</string>
+    <string name="google_app_id" translatable="false">1:540036256513:android:c9fb7882bbbe6cd8b6c100</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBLPkhbZBdunJLWv2Hlu6ce9oRmILieZH4</string>
+    <string name="google_storage_bucket" translatable="false">time-tracker-flutter-cou-142cc.appspot.com</string>
+    <string name="project_id" translatable="false">time-tracker-flutter-cou-142cc</string>
+</resources>
