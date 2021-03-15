@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/sign_in/validators.dart';
 import 'package:flutter_app/common/widgets/form_submit_button.dart';
-import 'package:flutter_app/common/widgets/show_alert_dialog.dart';
+import 'package:flutter_app/common/widgets/show_exception_alert_dialog.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -42,11 +43,8 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       }
 
       Navigator.of(context).pop();
-    } catch (e) {
-      showAlertDialog(context,
-          title: 'Sign in failed',
-          content: e.toString(),
-          defaultActionText: 'OK');
+    } on FirebaseAuthException catch (e) {
+      showExceptionAlertDialog(context, title: 'Sign in failed', exception: e);
     } finally {
       setState(() {
         _isLoading = false;
