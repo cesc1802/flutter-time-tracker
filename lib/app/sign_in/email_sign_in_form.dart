@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/app/sign_in/validators.dart';
 import 'package:flutter_app/common/widgets/form_submit_button.dart';
 import 'package:flutter_app/common/widgets/show_alert_dialog.dart';
-import 'package:flutter_app/services/auth_provider.dart';
+import 'package:flutter_app/services/auth.dart';
+import 'package:provider/provider.dart';
 
 enum EmailSignInFormType { signIn, register }
 
@@ -32,7 +33,8 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       _isLoading = true;
     });
     try {
-      final auth = AuthProvider.of(context);
+      final auth = Provider.of<AuthBase>(context, listen: false);
+      ;
       if (_formType == EmailSignInFormType.signIn) {
         await auth.signInWithEmailAndPassword(_email, _password);
       } else {

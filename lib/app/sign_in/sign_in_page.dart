@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app/sign_in/email_sign_in_page.dart';
 import 'package:flutter_app/app/sign_in/sign_in_button.dart';
-import 'package:flutter_app/services/auth_provider.dart';
+import 'package:flutter_app/services/auth.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
   Future<void> _signInAnonymously(BuildContext context) async {
     try {
-      final auth = AuthProvider.of(context);
+      final auth = Provider.of<AuthBase>(context, listen: false);
       await auth.signInAnonymously();
     } catch (e) {
       print(e.toString());
@@ -15,7 +16,7 @@ class SignInPage extends StatelessWidget {
 
   Future<void> _signInWithGoogle(BuildContext context) async {
     try {
-      final auth = AuthProvider.of(context);
+      final auth = Provider.of<AuthBase>(context, listen: false);
       await auth.signInWithGoogle();
     } catch (e) {
       print(e.toString());
@@ -24,7 +25,7 @@ class SignInPage extends StatelessWidget {
 
   Future<void> _signInWithFacebook(BuildContext context) async {
     try {
-      final auth = AuthProvider.of(context);
+      final auth = Provider.of<AuthBase>(context, listen: false);
       await auth.signInWithFb();
     } catch (e) {
       print(e.toString());
@@ -33,7 +34,7 @@ class SignInPage extends StatelessWidget {
 
   void _signInWithEmail(BuildContext context) {
     //TODO: show email sign in page
-    final auth = AuthProvider.of(context);
+    final auth = Provider.of<AuthBase>(context, listen: false);
     Navigator.of(context).push(MaterialPageRoute<void>(
         fullscreenDialog: true, builder: (context) => EmailSignInPage()));
   }
