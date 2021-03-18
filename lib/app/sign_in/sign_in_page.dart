@@ -8,7 +8,7 @@ import 'package:flutter_app/services/auth.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
-  SignInPage({Key key, this.bloc});
+  SignInPage({Key key, this.bloc}) : super(key: key);
   final SignInBloc bloc;
 
   static Widget create(BuildContext context) {
