@@ -7,7 +7,7 @@ import 'package:flutter_app/common/widgets/show_exception_alert_dialog.dart';
 import 'package:flutter_app/services/auth.dart';
 import 'package:provider/provider.dart';
 
-class SignInPage extends StatefulWidget {
+class SignInPage extends StatelessWidget {
   static Widget create(BuildContext context) {
     return Provider<SignInBloc>(
       create: (_) => SignInBloc(),
@@ -15,11 +15,6 @@ class SignInPage extends StatefulWidget {
     );
   }
 
-  @override
-  _SignInPageState createState() => _SignInPageState();
-}
-
-class _SignInPageState extends State<SignInPage> {
   void _showSignInError(BuildContext context, Exception exception) {
     if (exception is FirebaseException &&
         exception.code == 'ERROR_ABORTED_BY_USER') {
@@ -30,29 +25,41 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Future<void> _signInAnonymously(BuildContext context) async {
+    final bloc = Provider.of<SignInBloc>(context, listen: false);
     try {
+      bloc.setIsLoading(true);
       final auth = Provider.of<AuthBase>(context, listen: false);
       await auth.signInAnonymously();
     } catch (e) {
       _showSignInError(context, e);
+    } finally {
+      bloc.setIsLoading(false);
     }
   }
 
   Future<void> _signInWithGoogle(BuildContext context) async {
+    final bloc = Provider.of<SignInBloc>(context, listen: false);
     try {
+      bloc.setIsLoading(true);
       final auth = Provider.of<AuthBase>(context, listen: false);
       await auth.signInWithGoogle();
     } catch (e) {
       _showSignInError(context, e);
+    } finally {
+      bloc.setIsLoading(false);
     }
   }
 
   Future<void> _signInWithFacebook(BuildContext context) async {
+    final bloc = Provider.of<SignInBloc>(context, listen: false);
     try {
+      bloc.setIsLoading(true);
       final auth = Provider.of<AuthBase>(context, listen: false);
       await auth.signInWithFb();
     } catch (e) {
       _showSignInError(context, e);
+    } finally {
+      bloc.setIsLoading(false);
     }
   }
 
@@ -89,31 +96,30 @@ class _SignInPageState extends State<SignInPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            'Sign in',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w600),
+          SizedBox(
+            height: 50,
+            child: _buildHeader(isLoading),
           ),
           SizedBox(height: 48.0),
           SignInButton(
             text: 'Sign in with Google',
             color: Colors.white,
             textColor: Colors.black87,
-            onPressed: () => _signInWithGoogle(context),
+            onPressed: () => isLoading ? null : _signInWithGoogle(context),
           ),
           SizedBox(height: 8.0),
           SignInButton(
             text: 'Sign in with Facebook',
             color: Color(0xFF334D92),
             textColor: Colors.white,
-            onPressed: () => _signInWithFacebook(context),
+            onPressed: () => isLoading ? null : _signInWithFacebook(context),
           ),
           SizedBox(height: 8.0),
           SignInButton(
             text: 'Sign in with Email',
             color: Colors.teal[700],
             textColor: Colors.white,
-            onPressed: () => _signInWithEmail(context),
+            onPressed: () => isLoading ? null : _signInWithEmail(context),
           ),
           SizedBox(height: 8.0),
           Text(
@@ -128,10 +134,24 @@ class _SignInPageState extends State<SignInPage> {
             text: 'Go anonymous',
             color: Colors.lime[300],
             textColor: Colors.white,
-            onPressed: () => _signInAnonymously(context),
+            onPressed: () => isLoading ? null : _signInAnonymously(context),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildHeader(bool isLoading) {
+    if (isLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    return Text(
+      'Sign in',
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w600),
     );
   }
 }
